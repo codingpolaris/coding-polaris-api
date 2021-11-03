@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc ",
     "start": "tsc && node build/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codingpolaris/coding-polaris-api.git"
   },
-  "author": "Bianca Barbosa (biancapb)",
+  "author": "Bianca Barbosa (biancapb), Luiz Santiago (CaveiraRussa)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/codingpolaris/coding-polaris-api/issues"
