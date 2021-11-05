@@ -1,14 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
 import { CharactersService } from './characters.service';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
 
 @Controller('characters')
 export class CharactersController {
-  constructor(private readonly charactersService: CharactersService) {}
+  constructor(
+    private readonly charactersService: CharactersService,
+    private readonly usersService: UsersService,
+  ) {}
 
-  @Post()
-  create(@Body() createCharacterDto: CreateCharacterDto) {
+  @Post(':id')
+  async create(
+    @Body() createCharacterDto: CreateCharacterDto,
+    @Param('id') id: string,
+  ) {
+    createCharacterDto.user = await this.usersService.findOne(+id);
     return this.charactersService.create(createCharacterDto);
   }
 
@@ -23,7 +39,10 @@ export class CharactersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCharacterDto: UpdateCharacterDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCharacterDto: UpdateCharacterDto,
+  ) {
     return this.charactersService.update(+id, updateCharacterDto);
   }
 
