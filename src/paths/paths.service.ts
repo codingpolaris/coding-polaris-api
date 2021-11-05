@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreatePathDto } from './dto/create-path.dto';
 import { UpdatePathDto } from './dto/update-path.dto';
+import { Path } from './entities/path.entity';
 
 @Injectable()
 export class PathsService {
+  constructor(
+    @InjectRepository(Path)
+    private pathRepository: Repository<Path>,
+  ) {}
+
   create(createPathDto: CreatePathDto) {
-    return 'This action adds a new path';
+    return this.pathRepository.save(createPathDto);
   }
 
   findAll() {
-    return `This action returns all paths`;
+    return this.pathRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} path`;
+    return this.pathRepository.findOne(id);
   }
 
   update(id: number, updatePathDto: UpdatePathDto) {
-    return `This action updates a #${id} path`;
+    return this.pathRepository.update(id, updatePathDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} path`;
+  async remove(id: number): Promise<void> {
+    await this.pathRepository.delete(id);
   }
 }
