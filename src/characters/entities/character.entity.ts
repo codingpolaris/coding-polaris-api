@@ -17,6 +17,9 @@ export class Character {
   @Column()
   vitality: number;
 
+  @Column({ default: 0 })
+  level: number;
+
   @Column()
   experience: number;
 

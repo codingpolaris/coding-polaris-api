@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateChallengeDto } from './dto/create-challenge.dto';
 import { UpdateChallengeDto } from './dto/update-challenge.dto';
+import { Challenge } from './entities/challenge.entity';
 
 @Injectable()
 export class ChallengesService {
+  constructor(
+    @InjectRepository(Challenge)
+    private challengeRepository: Repository<Challenge>,
+  ) {}
+
   create(createChallengeDto: CreateChallengeDto) {
-    return 'This action adds a new challenge';
+    return this.challengeRepository.save(createChallengeDto);
   }
 
   findAll() {
-    return `This action returns all challenges`;
+    return this.challengeRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} challenge`;
+    return this.challengeRepository.findOne(id);
   }
 
   update(id: number, updateChallengeDto: UpdateChallengeDto) {
-    return `This action updates a #${id} challenge`;
+    return this.challengeRepository.update(id, updateChallengeDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} challenge`;
+  async remove(id: number): Promise<void> {
+    await this.challengeRepository.delete(id);
   }
 }

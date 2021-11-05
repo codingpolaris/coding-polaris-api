@@ -9,6 +9,6 @@ import { ThemesModule } from 'src/themes/themes.module';
   controllers: [ContentsController],
   providers: [ContentsService],
   imports: [TypeOrmModule.forFeature([Content]), ThemesModule],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, ContentsService],
 })
 export class ContentsModule {}

@@ -7,7 +7,9 @@ export class CreateCharacterDto {
 
   vitality: number;
 
+  level: number;
+
   experience: number;
 
-  user?: User;
+  user: User;
 }
