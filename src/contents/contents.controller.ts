@@ -1,14 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { ThemesService } from 'src/themes/themes.service';
 import { ContentsService } from './contents.service';
 import { CreateContentDto } from './dto/create-content.dto';
 import { UpdateContentDto } from './dto/update-content.dto';
 
 @Controller('contents')
 export class ContentsController {
-  constructor(private readonly contentsService: ContentsService) {}
+  constructor(
+    private readonly contentsService: ContentsService,
+    private readonly themesService: ThemesService,
+  ) {}
 
-  @Post()
-  create(@Body() createContentDto: CreateContentDto) {
+  @Post(':id')
+  async create(
+    @Body() createContentDto: CreateContentDto,
+    @Param('id') themeId: string,
+  ) {
+    createContentDto.theme = await this.themesService.findOne(+themeId);
     return this.contentsService.create(createContentDto);
   }
 
