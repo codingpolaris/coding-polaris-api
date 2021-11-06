@@ -12,6 +12,7 @@ import { PathsModule } from './paths/paths.module';
 import { ChallengesModule } from './challenges/challenges.module';
 import { ContentsModule } from './contents/contents.module';
 import { ThemesModule } from './themes/themes.module';
+import { ThemePathsModule } from './theme-paths/theme-paths.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ThemesModule } from './themes/themes.module';
     ChallengesModule,
     ContentsModule,
     ThemesModule,
+    ThemePathsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -20,14 +20,6 @@ export class Theme {
 
   @Column()
   acess: number;
-
-  @ManyToMany((type) => Path, {
-    cascade: true,
-  })
-  @JoinTable({
-    name: 'theme_path',
-    joinColumn: { name: 'pathId', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'themeId' },
-  })
+  @ManyToMany((type) => Path, (path) => path.theme)
   path: Path[];
 }
