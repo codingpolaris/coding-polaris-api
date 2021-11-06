@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Path } from 'src/paths/entities/path.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity()
 export class Theme {
@@ -13,4 +20,14 @@ export class Theme {
 
   @Column()
   acess: number;
+
+  @ManyToMany((type) => Path, {
+    cascade: true,
+  })
+  @JoinTable({
+    name: 'theme_path',
+    joinColumn: { name: 'pathId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'themeId' },
+  })
+  path: Path[];
 }

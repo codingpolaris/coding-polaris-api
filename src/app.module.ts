@@ -9,13 +9,23 @@ import { RePerformsModule } from './re-performs/re-performs.module';
 import { AchievementsModule } from './achievements/achievements.module';
 import { ReParticipatesModule } from './re-participates/re-participates.module';
 import { PathsModule } from './paths/paths.module';
-import { RePathsModule } from './re-paths/re-paths.module';
 import { ChallengesModule } from './challenges/challenges.module';
 import { ContentsModule } from './contents/contents.module';
 import { ThemesModule } from './themes/themes.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UsersModule, CharactersModule, RePerformsModule, AchievementsModule, ReParticipatesModule, PathsModule, RePathsModule, ChallengesModule, ContentsModule, ThemesModule],
+  imports: [
+    TypeOrmModule.forRoot(),
+    UsersModule,
+    CharactersModule,
+    RePerformsModule,
+    AchievementsModule,
+    ReParticipatesModule,
+    PathsModule,
+    ChallengesModule,
+    ContentsModule,
+    ThemesModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

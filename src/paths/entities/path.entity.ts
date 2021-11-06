@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Theme } from 'src/themes/entities/theme.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity()
 export class Path {
@@ -13,4 +20,7 @@ export class Path {
 
   @Column()
   acess: number;
+
+  @ManyToMany((type) => Theme, (theme) => theme.path)
+  theme: Theme[];
 }

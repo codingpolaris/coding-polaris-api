@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Path])],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, PathsService],
   controllers: [PathsController],
   providers: [PathsService],
 })
