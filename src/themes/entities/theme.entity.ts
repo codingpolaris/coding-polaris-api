@@ -1,12 +1,6 @@
 import { Character } from 'src/characters/entities/character.entity';
 import { Path } from 'src/paths/entities/path.entity';
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Theme {
@@ -21,9 +15,9 @@ export class Theme {
 
   @Column()
   acess: number;
-  @ManyToMany((type) => Path, (path) => path.theme)
+  @ManyToMany(() => Path, (path) => path.theme)
   path: Path[];
 
-  @ManyToMany((type) => Character, (character) => character.theme)
+  @ManyToMany(() => Character, (character) => character.theme)
   character: Character[];
 }

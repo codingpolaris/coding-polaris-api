@@ -29,6 +29,6 @@ export class Character {
   @JoinColumn()
   user: User;
 
-  @ManyToMany((type) => Theme, (theme) => theme.character)
+  @ManyToMany(() => Theme, (theme) => theme.character)
   theme: Theme[];
 }
