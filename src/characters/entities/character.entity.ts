@@ -1,9 +1,11 @@
+import { Theme } from 'src/themes/entities/theme.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   JoinColumn,
   OneToOne,
+  ManyToMany,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 @Entity()
@@ -26,4 +28,7 @@ export class Character {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
+
+  @ManyToMany((type) => Theme, (theme) => theme.character)
+  theme: Theme[];
 }

@@ -1,3 +1,4 @@
+import { Character } from 'src/characters/entities/character.entity';
 import { Path } from 'src/paths/entities/path.entity';
 import {
   Entity,
@@ -22,4 +23,7 @@ export class Theme {
   acess: number;
   @ManyToMany((type) => Path, (path) => path.theme)
   path: Path[];
+
+  @ManyToMany((type) => Character, (character) => character.theme)
+  character: Character[];
 }

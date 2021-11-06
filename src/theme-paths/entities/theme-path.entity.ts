@@ -1,13 +1,7 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Path } from 'src/paths/entities/path.entity';
 import { Theme } from 'src/themes/entities/theme.entity';
-@Entity()
+@Entity('re_theme_path')
 export class ThemePath {
   @PrimaryGeneratedColumn()
   id: number;
