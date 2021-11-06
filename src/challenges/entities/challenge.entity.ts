@@ -1,3 +1,4 @@
+import { Character } from 'src/characters/entities/character.entity';
 import { Content } from 'src/contents/entities/content.entity';
 import {
   Entity,
@@ -5,14 +6,13 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   ManyToOne,
+  ManyToMany,
 } from 'typeorm';
 
 @Entity()
 export class Challenge {
   @PrimaryGeneratedColumn()
   id: number;
-
-  pass_condition: number;
 
   @Column()
   name: string;
@@ -29,4 +29,7 @@ export class Challenge {
   @ManyToOne(() => Content)
   @JoinColumn()
   content: Content;
+
+  @ManyToMany(() => Character, (character) => character.theme)
+  character: Character[];
 }

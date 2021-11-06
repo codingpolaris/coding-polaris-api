@@ -13,6 +13,7 @@ import { ContentsModule } from './contents/contents.module';
 import { ThemesModule } from './themes/themes.module';
 import { ThemePathsModule } from './theme-paths/theme-paths.module';
 import { CharactersThemesModule } from './characters-themes/characters-themes.module';
+import { CharactersChallengesModule } from './characters-challenges/characters-challenges.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CharactersThemesModule } from './characters-themes/characters-themes.mo
     ThemesModule,
     ThemePathsModule,
     CharactersThemesModule,
+    CharactersChallengesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

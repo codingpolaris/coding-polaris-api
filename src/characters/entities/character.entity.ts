@@ -1,3 +1,4 @@
+import { Challenge } from 'src/challenges/entities/challenge.entity';
 import { Theme } from 'src/themes/entities/theme.entity';
 import {
   Entity,
@@ -31,4 +32,7 @@ export class Character {
 
   @ManyToMany(() => Theme, (theme) => theme.character)
   theme: Theme[];
+
+  @ManyToMany(() => Challenge, (challenge) => challenge.character)
+  challenge: Challenge[];
 }
