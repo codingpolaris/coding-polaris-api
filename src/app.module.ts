@@ -14,6 +14,8 @@ import { ThemesModule } from './themes/themes.module';
 import { ThemePathsModule } from './theme-paths/theme-paths.module';
 import { CharactersThemesModule } from './characters-themes/characters-themes.module';
 import { CharactersChallengesModule } from './characters-challenges/characters-challenges.module';
+import { CharactersPathsModule } from './characters-paths/characters-paths.module';
+import { AnswersModule } from './answers/answers.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { CharactersChallengesModule } from './characters-challenges/characters-c
     ThemePathsModule,
     CharactersThemesModule,
     CharactersChallengesModule,
+    CharactersPathsModule,
+    AnswersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

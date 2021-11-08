@@ -11,5 +11,7 @@ export class CreateUserDto {
 
   achievements_id: number;
 
+  gender: string;
+
   created_at: Date;
 }

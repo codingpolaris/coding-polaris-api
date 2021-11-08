@@ -20,6 +20,9 @@ export class User {
   @Column({ default: 0 })
   achievements_id: number;
 
+  @Column({ nullable: true })
+  gender: string;
+
   @Column({ default: new Date().toLocaleDateString() })
   created_at: Date;
 }

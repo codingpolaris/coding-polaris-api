@@ -20,11 +20,8 @@ export class Challenge {
   @Column()
   level: number;
 
-  @Column()
-  acess: number;
-
-  @Column()
-  answer: string;
+  @Column({ default: 0 })
+  minLevel: number;
 
   @ManyToOne(() => Content)
   @JoinColumn()
