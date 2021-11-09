@@ -4,7 +4,9 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import * as bcrypt from 'bcrypt';
 
+const saltRounds = 10;
 @Injectable()
 export class UsersService {
   constructor(
@@ -13,7 +15,10 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    return this.usersRepository.save(createUserDto);
+    bcrypt.hash(createUserDto.password, saltRounds).then((hash) => {
+      createUserDto.password = hash;
+      return this.usersRepository.save(createUserDto);
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -26,6 +31,10 @@ export class UsersService {
 
   findOne(id: number): Promise<User> {
     return this.usersRepository.findOne(id);
+  }
+
+  findUsername(username: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ username });
   }
 
   async remove(id: number): Promise<void> {
