@@ -33,6 +33,10 @@ export class UsersService {
     return this.usersRepository.findOne(id);
   }
 
+  findUsername(username: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ username });
+  }
+
   async remove(id: number): Promise<void> {
     await this.usersRepository.delete(id);
   }
