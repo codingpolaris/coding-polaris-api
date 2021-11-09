@@ -1,3 +1,4 @@
+import { Character } from 'src/characters/entities/character.entity';
 import { Theme } from 'src/themes/entities/theme.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
@@ -17,4 +18,7 @@ export class Path {
 
   @ManyToMany(() => Theme, (theme) => theme.path)
   theme: Theme[];
+
+  @ManyToMany(() => Character, (character) => character.path)
+  character: Character[];
 }

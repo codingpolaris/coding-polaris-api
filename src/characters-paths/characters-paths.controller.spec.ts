@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CharactersPathsController } from './characters-paths.controller';
-import { CharactersPathsService } from './characters-paths.service';
+import { CharactersPathsService } from './services/characters-paths.service';
 
 describe('CharactersPathsController', () => {
   let controller: CharactersPathsController;
@@ -11,7 +11,9 @@ describe('CharactersPathsController', () => {
       providers: [CharactersPathsService],
     }).compile();
 
-    controller = module.get<CharactersPathsController>(CharactersPathsController);
+    controller = module.get<CharactersPathsController>(
+      CharactersPathsController,
+    );
   });
 
   it('should be defined', () => {

@@ -1,4 +1,5 @@
 import { Challenge } from 'src/challenges/entities/challenge.entity';
+import { Path } from 'src/paths/entities/path.entity';
 import { Theme } from 'src/themes/entities/theme.entity';
 import {
   Entity,
@@ -35,4 +36,7 @@ export class Character {
 
   @ManyToMany(() => Challenge, (challenge) => challenge.character)
   challenge: Challenge[];
+
+  @ManyToMany(() => Path, (path) => path.character)
+  path: Path[];
 }
