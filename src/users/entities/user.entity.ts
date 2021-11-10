@@ -17,10 +17,7 @@ export class User {
   @Column()
   full_name: string;
 
-  @Column({ default: 0 })
-  achievements_id: number;
-
-  @Column({ nullable: true })
+  @Column()
   gender: string;
 
   @Column({ default: new Date().toLocaleDateString() })

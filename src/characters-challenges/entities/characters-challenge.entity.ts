@@ -29,7 +29,7 @@ export class CharactersChallenge {
   @Column({ default: new Date().toLocaleDateString() })
   start_date: Date;
 
-  @Column({ default: new Date().toLocaleDateString() })
+  @Column({ nullable: true })
   end_date: Date;
 
   @ManyToOne(() => Achievement)
