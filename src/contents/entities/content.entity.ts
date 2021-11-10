@@ -12,10 +12,10 @@ export class Content {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   title: string;
 
-  @Column()
+  @Column({ unique: true })
   text: string;
 
   @Column()

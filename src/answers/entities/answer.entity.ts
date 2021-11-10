@@ -12,7 +12,7 @@ export class Answer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   text: string;
 
   @Column()
