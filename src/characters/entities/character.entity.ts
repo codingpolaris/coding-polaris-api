@@ -15,16 +15,16 @@ export class Character {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ default: 0 })
   knowledge: number;
 
-  @Column()
+  @Column({ default: 5 })
   vitality: number;
 
   @Column({ default: 0 })
   level: number;
 
-  @Column()
+  @Column({ default: 0 })
   experience: number;
 
   @OneToOne(() => User)

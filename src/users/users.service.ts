@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { CharactersService } from 'src/characters/characters.service';
 
 const saltRounds = 10;
 @Injectable()
@@ -12,12 +13,15 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private charactersService: CharactersService,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    bcrypt.hash(createUserDto.password, saltRounds).then((hash) => {
+  async create(createUserDto: CreateUserDto) {
+    bcrypt.hash(createUserDto.password, saltRounds).then(async (hash) => {
       createUserDto.password = hash;
-      return this.usersRepository.save(createUserDto);
+      await this.usersRepository.save(createUserDto).then((user) => {
+        return this.charactersService.create(user);
+      });
     });
   }
 
