@@ -35,14 +35,9 @@ export class ThemePathsController {
     return this.themePathsService.create(createThemePathDto);
   }
 
-  @Get()
-  findAll(@Body() id: string) {
-    return this.themePathsService.findAll(id);
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.themePathsService.findOne(+id);
+  findAll(@Param('id') id: string) {
+    return this.themePathsService.findAll(id);
   }
 
   @Patch(':id')
