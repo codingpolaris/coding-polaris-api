@@ -36,12 +36,11 @@ export class CharactersPathsController {
     return this.charactersPathsService.create(createCharactersPathDto);
   }
 
-  @Get()
-  findAll() {
-    return this.charactersPathsService.findAll();
+  @Get(':id')
+  find(@Param('id') id: string) {
+    return this.charactersPathsService.find(id);
   }
 
-  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.charactersPathsService.findOne(+id);
   }

@@ -15,9 +15,10 @@ export class CharactersPathsService {
     return this.charactersPathRepository.save(createCharactersPathDto);
   }
 
-  findAll() {
+  find(id: string) {
     return this.charactersPathRepository.find({
       relations: ['path', 'character'],
+      where: { character: id },
     });
   }
 
