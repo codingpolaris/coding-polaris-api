@@ -36,8 +36,8 @@ export class ThemePathsController {
   }
 
   @Get()
-  findAll() {
-    return this.themePathsService.findAll();
+  findAll(@Body() id: string) {
+    return this.themePathsService.findAll(id);
   }
 
   @Get(':id')
