@@ -14,14 +14,9 @@ import { UpdateCharacterDto } from './dto/update-character.dto';
 export class CharactersController {
   constructor(private readonly charactersService: CharactersService) {}
 
-  @Get()
-  findAll() {
-    return this.charactersService.findAll();
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.charactersService.findOne(+id);
+  find(@Param('id') id: string) {
+    return this.charactersService.findAll(id);
   }
 
   @Patch(':id')
