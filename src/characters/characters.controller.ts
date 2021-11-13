@@ -15,7 +15,7 @@ export class CharactersController {
   constructor(private readonly charactersService: CharactersService) {}
 
   @Get(':id')
-  find(@Param('id') id: number) {
+  find(@Param('id') id: string) {
     return this.charactersService.find(id);
   }
 

@@ -27,9 +27,10 @@ export class CharactersChallengesController {
   @Post()
   async create(@Body() requestCharacterChallenge: RequestCharacterChallenge) {
     const createCharactersChallengeDto = new CreateCharactersChallengeDto();
-    createCharactersChallengeDto.character = await this.charactersService.find(
-      +requestCharacterChallenge.characterId,
-    );
+    createCharactersChallengeDto.character =
+      await this.charactersService.findOne(
+        +requestCharacterChallenge.characterId,
+      );
     createCharactersChallengeDto.challenge =
       await this.challengesService.findOne(
         +requestCharacterChallenge.ChallengeId,

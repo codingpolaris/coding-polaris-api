@@ -22,10 +22,16 @@ export class CharactersService {
     return this.characterRepository.update(id, updateCharacterDto);
   }
 
-  find(id: number): Promise<Character> {
-    return this.characterRepository.findOne(id, {
+  find(id: string): Promise<Character> {
+    return this.characterRepository.findOne({
       relations: ['user'],
       where: { user: id },
+    });
+  }
+
+  findOne(id: number): Promise<Character> {
+    return this.characterRepository.findOne(id, {
+      relations: ['user'],
     });
   }
 
