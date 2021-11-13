@@ -29,7 +29,7 @@ export class CharactersThemesController {
       +requestCharactersThemes.themeId,
     );
     createCharactersThemeDto.character =
-      await this.charactersServiceService.findOne(
+      await this.charactersServiceService.find(
         +requestCharactersThemes.characterId,
       );
 

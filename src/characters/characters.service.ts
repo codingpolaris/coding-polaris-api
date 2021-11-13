@@ -22,15 +22,11 @@ export class CharactersService {
     return this.characterRepository.update(id, updateCharacterDto);
   }
 
-  findAll(id: string) {
-    return this.characterRepository.find({
+  find(id: number): Promise<Character> {
+    return this.characterRepository.findOne(id, {
       relations: ['user'],
       where: { user: id },
     });
-  }
-
-  findOne(id: number): Promise<Character> {
-    return this.characterRepository.findOne(id, { relations: ['user'] });
   }
 
   async remove(id: number): Promise<void> {

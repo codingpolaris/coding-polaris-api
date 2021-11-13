@@ -29,7 +29,7 @@ export class CharactersPathsController {
       +requestCharactersPaths.pathId,
     );
     createCharactersPathDto.character =
-      await this.charactersServiceService.findOne(
+      await this.charactersServiceService.find(
         +requestCharactersPaths.characterId,
       );
 
