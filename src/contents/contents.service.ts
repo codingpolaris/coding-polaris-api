@@ -15,8 +15,11 @@ export class ContentsService {
     return this.contentRepository.save(createContentDto);
   }
 
-  findAll(): Promise<Content[]> {
-    return this.contentRepository.find({ relations: ['theme'] });
+  find(id: string): Promise<Content[]> {
+    return this.contentRepository.find({
+      relations: ['theme'],
+      where: { theme: id },
+    });
   }
 
   findOne(id: number): Promise<Content> {

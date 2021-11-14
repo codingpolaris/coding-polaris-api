@@ -28,14 +28,9 @@ export class ContentsController {
     return this.contentsService.create(createContentDto);
   }
 
-  @Get()
-  findAll() {
-    return this.contentsService.findAll();
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.contentsService.findOne(+id);
+  find(@Param('id') id: string) {
+    return this.contentsService.find(id);
   }
 
   @Patch(':id')
