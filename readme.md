@@ -16,16 +16,6 @@ Esta é a implementação de um Trabalho de Conclusão de Curso de dois alunos d
 - [Autores](#autores)
 - [Conclusão](#conclusao)
 
-## Autores
-
- Alunos cursando último período em Ciência da Computação.
-
- - Bianca Portela Barbosa
- - Luiz Augusto Monteiro Santiago
-
-## Conclusao
-
-  Primeiramente, gostaríamos de agradecer todo o apoio que a orientadora e profº Priscilla Fonseca de Abreu Braz nos forceneceu, principalmente o encorajamento que nos permitiu fazer esse trabalho com amor e dedicação.
 
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
@@ -63,3 +53,15 @@ $ npm run start:prod
 ## Licença
 
 Nest is [MIT licensed](LICENSE).
+
+## Autores
+
+ Alunos cursando último período em Ciência da Computação.
+
+ - Bianca Portela Barbosa
+ - Luiz Augusto Monteiro Santiago
+
+## Conclusao
+
+  Primeiramente, gostaríamos de agradecer todo o apoio que a orientadora e profº Priscilla Fonseca de Abreu Braz nos forceneceu, principalmente o encorajamento que nos permitiu fazer esse trabalho com amor e dedicação.
+
