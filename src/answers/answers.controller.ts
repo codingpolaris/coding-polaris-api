@@ -28,7 +28,6 @@ export class AnswersController {
     return this.answersService.create(createAnswerDto);
   }
 
-
   @Get(':id')
   find(@Param('id') id: string) {
     return this.answersService.find(id);
