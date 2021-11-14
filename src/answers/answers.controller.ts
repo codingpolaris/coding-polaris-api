@@ -28,14 +28,10 @@ export class AnswersController {
     return this.answersService.create(createAnswerDto);
   }
 
-  @Get()
-  findAll() {
-    return this.answersService.findAll();
-  }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.answersService.findOne(+id);
+  find(@Param('id') id: string) {
+    return this.answersService.find(id);
   }
 
   @Patch(':id')

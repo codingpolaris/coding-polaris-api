@@ -14,8 +14,11 @@ export class AnswersService {
   create(createAnswerDto: CreateAnswerDto) {
     return this.answerRepository.save(createAnswerDto);
   }
-  findAll(): Promise<CreateAnswerDto[]> {
-    return this.answerRepository.find({ relations: ['challenge'] });
+  find(id: string): Promise<CreateAnswerDto[]> {
+    return this.answerRepository.find({
+      relations: ['challenge'],
+      where: { challenge: id },
+    });
   }
 
   findOne(id: number): Promise<CreateAnswerDto> {
