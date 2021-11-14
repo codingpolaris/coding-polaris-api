@@ -28,14 +28,9 @@ export class ChallengesController {
     return this.challengesService.create(createChallengeDto);
   }
 
-  @Get()
-  findAll() {
-    return this.challengesService.findAll();
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.challengesService.findOne(+id);
+  find(@Param('id') id: string) {
+    return this.challengesService.find(id);
   }
 
   @Patch(':id')

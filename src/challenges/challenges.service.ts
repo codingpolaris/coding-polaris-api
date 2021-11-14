@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ContentsService } from 'src/contents/contents.service';
 import { Repository } from 'typeorm';
 import { CreateChallengeDto } from './dto/create-challenge.dto';
 import { UpdateChallengeDto } from './dto/update-challenge.dto';
@@ -16,8 +17,12 @@ export class ChallengesService {
     return this.challengeRepository.save(createChallengeDto);
   }
 
-  findAll() {
-    return this.challengeRepository.find();
+  find(id: string) {
+    ContentsService;
+    return this.challengeRepository.find({
+      relations: ['content'],
+      where: { content: { theme: id } },
+    });
   }
 
   findOne(id: number) {
