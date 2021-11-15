@@ -17,14 +17,14 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    bcrypt.hash(createUserDto.password, saltRounds).then(async (hash) => {
-      createUserDto.password = hash;
-      await this.usersRepository.save(createUserDto).then((user) => {
-        return this.charactersService.create(user);
-      });
-    });
+    const password = await bcrypt.hash(createUserDto.password, saltRounds)
+    createUserDto.password = password;
+    return await this.usersRepository.save(createUserDto);
   }
 
+  async createCharacter(user: User) {
+    return await this.charactersService.create(user);
+  }
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.usersRepository.update(id, updateUserDto);
   }
