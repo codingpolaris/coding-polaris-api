@@ -55,7 +55,7 @@ export class CharactersChallengesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.charactersChallengesService.findOne(+id);
+    return this.charactersChallengesService.findComplete(id);
   }
 
   @Patch(':id')

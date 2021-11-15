@@ -23,6 +23,22 @@ export class CharactersChallengesService {
     });
   }
 
+  findComplete(id: string) {
+    return this.charactersChallengeRepository
+      .createQueryBuilder('re_character_challenge')
+      .leftJoinAndSelect('re_character_challenge.character', 'character')
+      .leftJoinAndSelect('re_character_challenge.challenge', 'challenge')
+      .leftJoinAndSelect('re_character_challenge.achievement', 'achievement')
+      .where('re_character_challenge.accepts= :accept', { accept: 1 })
+      .andWhere('re_character_challenge.characterId= :id', { id: id })
+      .distinctOn([
+        're_character_challenge.characterId',
+        'challenge.id',
+        'achievement.id',
+      ])
+      .getMany();
+  }
+
   findOne(id: number) {
     return this.charactersChallengeRepository.findOne(id, {
       relations: ['character', 'challenge', 'achievement'],
