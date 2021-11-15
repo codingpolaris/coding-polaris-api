@@ -18,7 +18,6 @@ export class ChallengesService {
   }
 
   find(id: string) {
-    ContentsService;
     return this.challengeRepository.find({
       relations: ['content'],
       where: { content: { theme: id } },

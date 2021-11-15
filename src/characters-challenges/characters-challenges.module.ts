@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { CharactersChallengesService } from './services/characters-challenges.service';
 import { CharactersChallengesController } from './characters-challenges.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -13,8 +13,8 @@ import { CharactersChallenge } from './entities/characters-challenge.entity';
   imports: [
     TypeOrmModule.forFeature([CharactersChallenge]),
     CharactersModule,
-    ChallengesModule,
     AchievementsModule,
+    forwardRef(() => ChallengesModule),
   ],
   exports: [TypeOrmModule, CharactersChallengesService],
 })

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { CharactersChallengesService } from 'src/characters-challenges/services/characters-challenges.service';
 import { ContentsService } from 'src/contents/contents.service';
 import { ChallengesService } from './challenges.service';
 import { CreateChallengeDto } from './dto/create-challenge.dto';
@@ -17,6 +18,7 @@ export class ChallengesController {
   constructor(
     private readonly challengesService: ChallengesService,
     private readonly contentsService: ContentsService,
+    private readonly charactersChallengesService: CharactersChallengesService,
   ) {}
 
   @Post(':id')
@@ -28,9 +30,28 @@ export class ChallengesController {
     return this.challengesService.create(createChallengeDto);
   }
 
-  @Get(':id')
-  find(@Param('id') id: string) {
-    return this.challengesService.find(id);
+  @Get(':themeId/:characterId')
+  async find(
+    @Param('themeId') themeId: string,
+    @Param('characterId') characterId: string,
+  ) {
+    const challengers = await this.challengesService.find(themeId);
+    const history = await this.charactersChallengesService.findComplete(
+      characterId,
+    );
+    if (history.length > 0) {
+      const questions = [];
+      history.forEach((register) => {
+        challengers.forEach((question) => {
+          if (question.id !== register.challenge.id) {
+            questions.push(question);
+          }
+        });
+      });
+      return questions;
+    } else {
+      return challengers;
+    }
   }
 
   @Patch(':id')
