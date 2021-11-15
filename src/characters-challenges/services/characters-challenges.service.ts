@@ -30,7 +30,7 @@ export class CharactersChallengesService {
   }
 
   update(
-    id: number,
+    id: CreateCharactersChallengeDto,
     updateCharactersChallengeDto: UpdateCharactersChallengeDto,
   ) {
     return this.charactersChallengeRepository.update(

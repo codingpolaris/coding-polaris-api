@@ -14,6 +14,7 @@ import { RequestCharacterChallenge } from './services/requests/characters-challe
 import { CharactersService } from 'src/characters/characters.service';
 import { ChallengesService } from 'src/challenges/challenges.service';
 import { AchievementsService } from 'src/achievements/achievements.service';
+import { RequestUpdateCharacterChallenge } from './services/requests/update-characters-challenge.request';
 
 @Controller('characters-challenges')
 export class CharactersChallengesController {
@@ -58,12 +59,39 @@ export class CharactersChallengesController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateCharactersChallengeDto: UpdateCharactersChallengeDto,
+  async update(
+    @Param('id') id: number,
+    @Body() requestUpdateCharacterChallenge: RequestUpdateCharacterChallenge,
   ) {
+    const createCharactersChallengeDto = new CreateCharactersChallengeDto();
+    const updateCharactersChallengeDto = new UpdateCharactersChallengeDto();
+    createCharactersChallengeDto.id = id;
+    createCharactersChallengeDto.character =
+      await this.charactersService.findOne(
+        +requestUpdateCharacterChallenge.characterId,
+      );
+    createCharactersChallengeDto.challenge =
+      await this.challengesService.findOne(
+        +requestUpdateCharacterChallenge.ChallengeId,
+      );
+    createCharactersChallengeDto.achievement =
+      await this.achievementsService.findOne(
+        +requestUpdateCharacterChallenge.achievementId,
+      );
+    updateCharactersChallengeDto.end_date = new Date();
+    if (requestUpdateCharacterChallenge.accepts) {
+      updateCharactersChallengeDto.accepts =
+        requestUpdateCharacterChallenge?.accepts;
+    }
+    if (requestUpdateCharacterChallenge.fails) {
+      updateCharactersChallengeDto.fails =
+        requestUpdateCharacterChallenge?.fails;
+    }
+    console.log(updateCharactersChallengeDto);
+    console.log(createCharactersChallengeDto);
+
     return this.charactersChallengesService.update(
-      +id,
+      createCharactersChallengeDto,
       updateCharactersChallengeDto,
     );
   }
