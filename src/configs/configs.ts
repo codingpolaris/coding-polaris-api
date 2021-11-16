@@ -1,8 +1,11 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 class Configs {
-  public host = process.env.HOST;
-  public port = process.env.PORT;
-  public user = process.env.USER;
-  public password = process.env.PASSWORD;
+  public host = process.env.EMAIL_HOST;
+  public port = process.env.EMAIL_PORT;
+  public user = process.env.EMAIL_USER;
+  public password = process.env.EMAIL_PASSWORD;
 }
 
 export default new Configs();
