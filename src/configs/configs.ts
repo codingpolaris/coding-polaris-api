@@ -1,8 +1,8 @@
 class Configs {
-    public host = "gmail";
-    public port = 587;
-    public user = "codingpolaris@gmail.com";
-    public password = "[Pol4ris]";
+  public host = process.env.HOST;
+  public port = process.env.PORT;
+  public user = process.env.USER;
+  public password = process.env.PASSWORD;
 }
 
-export default new Configs;
+export default new Configs();

@@ -6,14 +6,12 @@ import {
   Patch,
   Param,
   Delete,
-  HttpStatus,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CharactersService } from 'src/characters/characters.service';
-import { User } from './entities/user.entity';
-import Mail from "../mail/mail";
+import { PasswordResetRequest } from './services/request/passwordReset.request';
 
 @Controller('users')
 export class UsersController {
@@ -48,19 +46,17 @@ export class UsersController {
     return this.usersService.remove(+id);
   }
 
-  @Post('passwordReset') 
-  async passwordReset(@Body() email: string) {
+  @Post('passwordReset')
+  async passwordReset(@Body() userPassword: PasswordResetRequest) {
     try {
-      const user = await this.usersService.findUsername(email);
-      console.log("console do luiz try", user)
+      const user = await this.usersService.findEmail(userPassword.email);
+      console.log('O caraio', user);
       if (user) {
-        const password = user.username + Math.floor(Math.random() * (10 + 1));
-        console.log("console do luiz if")
-        return password
+        console.log('O caraio 2');
+        return this.usersService.updatePassword(user, true);
       }
     } catch (err) {
-      console.log("console do luiz catch")
-      return "erro"
+      return err;
     }
   }
 }

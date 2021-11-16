@@ -6,6 +6,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { CharactersService } from 'src/characters/characters.service';
+import Mail from '../mail/mail';
 
 const saltRounds = 10;
 @Injectable()
@@ -17,7 +18,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const password = await bcrypt.hash(createUserDto.password, saltRounds)
+    const password = await bcrypt.hash(createUserDto.password, saltRounds);
     createUserDto.password = password;
     return await this.usersRepository.save(createUserDto);
   }
@@ -49,8 +50,27 @@ export class UsersService {
     return this.usersRepository.findOne({ email });
   }
 
-  async updatePassword(newPassword: string, id: number) {
+  async updatePassword(user: User, isRecover: boolean) {
+    let newPassword = user.password;
+    console.log('O caraio3');
+    if (isRecover) {
+      console.log('Opa');
+      newPassword = user.username + Math.floor(Math.random() * (10 + 1));
+    }
     const password = await bcrypt.hash(newPassword, saltRounds);
-    return this.usersRepository.update(id, { password : password} );
+    this.usersRepository.update(user.id, { password: password });
+    if (isRecover) {
+      console.log('Maoe');
+      return this.sendEmail(user.email, newPassword);
+    }
+  }
+
+  sendEmail(email: string, password: string) {
+    console.log('Bateu aqui');
+    Mail.to = email;
+    Mail.subject = 'Nova Senha';
+    Mail.message = `Sua nova senha é ${password}`;
+    const result = Mail.sendMail();
+    return result;
   }
 }
