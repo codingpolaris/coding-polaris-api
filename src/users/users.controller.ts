@@ -50,9 +50,7 @@ export class UsersController {
   async passwordReset(@Body() userPassword: PasswordResetRequest) {
     try {
       const user = await this.usersService.findEmail(userPassword.email);
-      console.log('O caraio', user);
       if (user) {
-        console.log('O caraio 2');
         return this.usersService.updatePassword(user, true);
       }
     } catch (err) {

@@ -26,15 +26,10 @@ class Mail {
       tls: { rejectUnauthorized: false },
     });
 
-    console.log(mailOptions);
-
     transporter.sendMail(mailOptions, function (error, info) {
-      console.log('entrou');
       if (error) {
-        console.log('entrou no erro', error);
         return error;
       } else {
-        console.log('entrou no else');
         return 'E-mail enviado com sucesso!';
       }
     });

@@ -52,21 +52,17 @@ export class UsersService {
 
   async updatePassword(user: User, isRecover: boolean) {
     let newPassword = user.password;
-    console.log('O caraio3');
     if (isRecover) {
-      console.log('Opa');
       newPassword = user.username + Math.floor(Math.random() * (10 + 1));
     }
     const password = await bcrypt.hash(newPassword, saltRounds);
     this.usersRepository.update(user.id, { password: password });
     if (isRecover) {
-      console.log('Maoe');
       return this.sendEmail(user.email, newPassword);
     }
   }
 
   sendEmail(email: string, password: string) {
-    console.log('Bateu aqui');
     Mail.to = email;
     Mail.subject = 'Nova Senha';
     Mail.message = `Sua nova senha é ${password}`;
