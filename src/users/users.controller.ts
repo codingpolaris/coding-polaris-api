@@ -13,6 +13,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CharactersService } from 'src/characters/characters.service';
 import { User } from './entities/user.entity';
+import Mail from "../mail/mail";
 
 @Controller('users')
 export class UsersController {
@@ -45,5 +46,21 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Post('passwordReset') 
+  async passwordReset(@Body() email: string) {
+    try {
+      const user = await this.usersService.findUsername(email);
+      console.log("console do luiz try", user)
+      if (user) {
+        const password = user.username + Math.floor(Math.random() * (10 + 1));
+        console.log("console do luiz if")
+        return password
+      }
+    } catch (err) {
+      console.log("console do luiz catch")
+      return "erro"
+    }
   }
 }

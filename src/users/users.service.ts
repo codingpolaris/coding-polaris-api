@@ -44,4 +44,13 @@ export class UsersService {
   async remove(id: number): Promise<void> {
     await this.usersRepository.delete(id);
   }
+
+  findEmail(email: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ email });
+  }
+
+  async updatePassword(newPassword: string, id: number) {
+    const password = await bcrypt.hash(newPassword, saltRounds);
+    return this.usersRepository.update(id, { password : password} );
+  }
 }
