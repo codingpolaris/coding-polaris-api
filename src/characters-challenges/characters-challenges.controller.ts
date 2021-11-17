@@ -87,8 +87,6 @@ export class CharactersChallengesController {
       updateCharactersChallengeDto.fails =
         requestUpdateCharacterChallenge?.fails;
     }
-    console.log(updateCharactersChallengeDto);
-    console.log(createCharactersChallengeDto);
 
     return this.charactersChallengesService.update(
       createCharactersChallengeDto,
