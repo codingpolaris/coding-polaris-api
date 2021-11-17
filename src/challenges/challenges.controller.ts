@@ -39,19 +39,7 @@ export class ChallengesController {
     const history = await this.charactersChallengesService.findComplete(
       characterId,
     );
-    if (history.length > 0) {
-      const questions = [];
-      history.forEach((register) => {
-        challengers.forEach((question) => {
-          if (question.id !== register.challenge.id) {
-            questions.push(question);
-          }
-        });
-      });
-      return questions;
-    } else {
-      return challengers;
-    }
+    return await this.challengesService.findIncomplete(challengers, history);
   }
 
   @Patch(':id')
