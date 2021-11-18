@@ -15,15 +15,10 @@ export class CharactersThemesService {
     return this.charactersThemeRepository.save(createCharactersThemeDto);
   }
 
-  findAll() {
+  find(id: string) {
     return this.charactersThemeRepository.find({
       relations: ['theme', 'character'],
-    });
-  }
-
-  findOne(id: number) {
-    return this.charactersThemeRepository.findOne(id, {
-      relations: ['theme', 'character'],
+      where: { character: id },
     });
   }
 

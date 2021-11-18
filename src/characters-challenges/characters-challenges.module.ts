@@ -13,7 +13,7 @@ import { CharactersChallenge } from './entities/characters-challenge.entity';
   imports: [
     TypeOrmModule.forFeature([CharactersChallenge]),
     CharactersModule,
-    AchievementsModule,
+    forwardRef(() => AchievementsModule),
     forwardRef(() => ChallengesModule),
   ],
   exports: [TypeOrmModule, CharactersChallengesService],

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CharactersChallenge } from 'src/characters-challenges/entities/characters-challenge.entity';
+import { CharactersChallengesService } from 'src/characters-challenges/services/characters-challenges.service';
 import { Repository } from 'typeorm';
 import { CreateChallengeDto } from './dto/create-challenge.dto';
 import { UpdateChallengeDto } from './dto/update-challenge.dto';
@@ -11,6 +12,7 @@ export class ChallengesService {
   constructor(
     @InjectRepository(Challenge)
     private challengeRepository: Repository<Challenge>,
+    private readonly charactersChallengesService: CharactersChallengesService,
   ) {}
 
   create(createChallengeDto: CreateChallengeDto) {
@@ -36,10 +38,10 @@ export class ChallengesService {
     await this.challengeRepository.delete(id);
   }
 
-  findIncomplete(
-    challengers: Challenge[],
-    characterChallengers: CharactersChallenge[],
-  ) {
+  async findIncomplete(themeId: string, characterId: string) {
+    const challengers = await this.find(themeId);
+    const characterChallengers =
+      await this.charactersChallengesService.findComplete(characterId);
     if (characterChallengers.length > 0) {
       const questions = [] as Challenge[];
       const completed = [] as Challenge[];

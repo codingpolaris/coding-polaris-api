@@ -36,14 +36,9 @@ export class CharactersThemesController {
     return this.charactersThemesService.create(createCharactersThemeDto);
   }
 
-  @Get()
-  findAll() {
-    return this.charactersThemesService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.charactersThemesService.findOne(+id);
+    return this.charactersThemesService.find(id);
   }
 
   @Patch(':id')
