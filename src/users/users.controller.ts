@@ -41,6 +41,11 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  @Patch('gender/:id')
+  chageGender(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.changeGender(+id, updateUserDto);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
@@ -51,7 +56,7 @@ export class UsersController {
     try {
       const user = await this.usersService.findEmail(userPassword.email);
       if (user) {
-        return this.usersService.updatePassword(user, true);
+        return this.usersService.updatePassword(user, userPassword.isReset);
       }
     } catch (err) {
       return err;

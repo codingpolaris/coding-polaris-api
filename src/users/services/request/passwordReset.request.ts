@@ -4,4 +4,6 @@ export class PasswordResetRequest {
   newPassword?: string;
 
   email?: string;
+
+  isReset: boolean;
 }

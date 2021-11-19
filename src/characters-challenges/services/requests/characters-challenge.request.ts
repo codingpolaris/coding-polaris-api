@@ -3,7 +3,7 @@ export class RequestCharacterChallenge {
 
   ChallengeId: number;
 
-  class: string;
+  class: number;
 
   achievementId: number;
 }

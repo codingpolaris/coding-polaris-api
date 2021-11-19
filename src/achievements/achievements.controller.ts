@@ -27,7 +27,7 @@ export class AchievementsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.achievementsService.findOne(+id);
+    return this.achievementsService.getUserAchievements(id);
   }
 
   @Patch(':id')

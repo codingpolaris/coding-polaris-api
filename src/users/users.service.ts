@@ -26,6 +26,7 @@ export class UsersService {
   async createCharacter(user: User) {
     return await this.charactersService.create(user);
   }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.usersRepository.update(id, updateUserDto);
   }
@@ -60,6 +61,11 @@ export class UsersService {
     if (isRecover) {
       return this.sendEmail(user.email, newPassword);
     }
+  }
+
+  async changeGender(id: number, updateUserDto: UpdateUserDto) {
+    const character = await this.charactersService.findOne(id);
+    return await this.update(character.user.id, updateUserDto);
   }
 
   sendEmail(email: string, password: string) {

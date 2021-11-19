@@ -37,7 +37,7 @@ export class ThemePathsController {
 
   @Get(':id')
   findAll(@Param('id') id: string) {
-    return this.themePathsService.findAll(id);
+    return this.themePathsService.find(id);
   }
 
   @Patch(':id')
