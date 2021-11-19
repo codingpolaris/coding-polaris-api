@@ -15,16 +15,10 @@ export class ThemePathsService {
     return this.themePathRepository.save(createThemePathDto);
   }
 
-  findAll(id: string) {
+  find(id: string) {
     return this.themePathRepository.find({
       relations: ['theme', 'path'],
       where: { path: id },
-    });
-  }
-
-  findOne(id: number) {
-    return this.themePathRepository.findOne(id, {
-      relations: ['theme', 'path'],
     });
   }
 
