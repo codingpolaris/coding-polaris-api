@@ -43,9 +43,11 @@ export class CharactersChallengesService {
     );
   }
 
-  findAll() {
-    return this.charactersChallengeRepository.find({
+  getMoreRecent(id: string) {
+    return this.charactersChallengeRepository.findOne({
       relations: ['character', 'challenge', 'achievement'],
+      where: { character: id },
+      order: { id: 'DESC' },
     });
   }
 
@@ -63,12 +65,6 @@ export class CharactersChallengesService {
         'achievement.id',
       ])
       .getMany();
-  }
-
-  findOne(id: number) {
-    return this.charactersChallengeRepository.findOne(id, {
-      relations: ['character', 'challenge', 'achievement'],
-    });
   }
 
   async update(

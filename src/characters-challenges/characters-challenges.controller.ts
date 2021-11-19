@@ -24,13 +24,8 @@ export class CharactersChallengesController {
     );
   }
 
-  @Get()
-  findAll() {
-    return this.charactersChallengesService.findAll();
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  find(@Param('id') id: string) {
     return this.charactersChallengesService.findComplete(id);
   }
 

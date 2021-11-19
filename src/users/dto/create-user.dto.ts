@@ -9,8 +9,6 @@ export class CreateUserDto {
 
   full_name: string;
 
-  achievements_id: number;
-
   gender: string;
 
   created_at: Date;

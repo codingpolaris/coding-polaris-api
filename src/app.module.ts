@@ -16,6 +16,7 @@ import { CharactersChallengesModule } from './characters-challenges/characters-c
 import { CharactersPathsModule } from './characters-paths/characters-paths.module';
 import { AnswersModule } from './answers/answers.module';
 import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
     CharactersPathsModule,
     AnswersModule,
     AuthModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
