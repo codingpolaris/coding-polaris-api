@@ -18,7 +18,6 @@ export class CharactersThemesController {
 
   @Post()
   async create(@Body() requestCharactersThemes: RequestCharactersThemes) {
-    console.log(requestCharactersThemes);
     return this.charactersThemesService.create(requestCharactersThemes);
   }
 
