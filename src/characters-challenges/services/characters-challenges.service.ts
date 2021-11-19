@@ -9,6 +9,7 @@ import { UpdateCharactersChallengeDto } from '../dto/update-characters-challenge
 import { CharactersChallenge } from '../entities/characters-challenge.entity';
 import { RequestUpdateCharacterChallenge } from './requests/update-characters-challenge.request';
 import { RequestCharacterChallenge } from './requests/characters-challenge.request';
+import { Class } from 'src/enums/class.enum';
 
 @Injectable()
 export class CharactersChallengesService {
@@ -35,7 +36,7 @@ export class CharactersChallengesService {
       await this.achievementsService.findOne(
         +requestCharacterChallenge.achievementId,
       );
-    createCharactersChallengeDto.class = requestCharacterChallenge.class;
+    createCharactersChallengeDto.class = Class[requestCharacterChallenge.class];
     createCharactersChallengeDto.level =
       createCharactersChallengeDto.challenge.level;
     return this.charactersChallengeRepository.save(

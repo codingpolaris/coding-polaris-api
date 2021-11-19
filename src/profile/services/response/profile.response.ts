@@ -1,6 +1,7 @@
 import { Achievement } from 'src/achievements/entities/achievement.entity';
 import { CharactersChallenge } from 'src/characters-challenges/entities/characters-challenge.entity';
 import { Character } from 'src/characters/entities/character.entity';
+import { Class } from 'src/enums/class.enum';
 
 export class Profile {
   constructor(
@@ -12,7 +13,11 @@ export class Profile {
     this.email = character.user.email;
     this.full_name = character.user.full_name;
     this.gender = character.user.gender;
-    this.class = characterChallenge.class;
+    if (characterChallenge) {
+      this.class = characterChallenge.class;
+    } else {
+      this.class = Class[1];
+    }
     this.achievement = achievements;
   }
   username: string;
