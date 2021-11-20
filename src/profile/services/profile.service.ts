@@ -19,6 +19,6 @@ export class ProfileService {
       await this.charactersChallengesService.getMoreRecent(id);
 
     const profile = new Profile(character, achievements, charactersChallenges);
-    console.log(profile);
+    return profile;
   }
 }
