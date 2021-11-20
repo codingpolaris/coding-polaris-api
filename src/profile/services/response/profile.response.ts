@@ -9,6 +9,7 @@ export class Profile {
     achievements: Achievement[],
     characterChallenge: CharactersChallenge,
   ) {
+    this.characterId = character.id;
     this.username = character.user.username;
     this.email = character.user.email;
     this.full_name = character.user.full_name;
@@ -20,6 +21,9 @@ export class Profile {
     }
     this.achievement = achievements;
   }
+
+  characterId: number;
+
   username: string;
 
   email: string;
