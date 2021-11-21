@@ -57,8 +57,8 @@ export class UsersService {
     if (userPassword.isRecover) {
       user = await this.findEmail(userPassword.email);
     } else {
-      const data = await this.charactersService.find(
-        userPassword.characterId.toString(),
+      const data = await this.charactersService.findOne(
+        userPassword.characterId,
       );
       user = data.user;
     }
