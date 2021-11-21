@@ -30,7 +30,7 @@ export class CharactersChallengesService {
       );
     createCharactersChallengeDto.challenge =
       await this.challengesService.findOne(
-        +requestCharacterChallenge.ChallengeId,
+        +requestCharacterChallenge.challengeId,
       );
     createCharactersChallengeDto.achievement =
       await this.achievementsService.findOne(
