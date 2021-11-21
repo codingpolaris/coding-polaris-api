@@ -63,6 +63,10 @@ export class CharactersThemesService {
       +requestCharactersThemes.themeId,
     );
     updateCharactersThemeDto.isCompleted = requestCharactersThemes.isCompleted;
+
+    if (requestCharactersThemes.isCompleted) {
+    }
+
     return this.charactersThemeRepository.update(
       createCharactersThemeDto,
       updateCharactersThemeDto,

@@ -5,5 +5,7 @@ export class PasswordResetRequest {
 
   email?: string;
 
-  isReset: boolean;
+  isRecover: boolean;
+
+  characterId?: number;
 }

@@ -7,6 +7,7 @@ import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { CharactersService } from 'src/characters/characters.service';
 import Mail from '../mail/mail';
+import { PasswordResetRequest } from './services/request/passwordReset.request';
 
 const saltRounds = 10;
 @Injectable()
@@ -51,14 +52,24 @@ export class UsersService {
     return this.usersRepository.findOne({ email });
   }
 
-  async updatePassword(user: User, isRecover: boolean) {
+  async updatePassword(userPassword: PasswordResetRequest) {
+    let user = {} as User;
+    if (userPassword.isRecover) {
+      user = await this.findEmail(userPassword.email);
+    } else {
+      const data = await this.charactersService.find(
+        userPassword.characterId.toString(),
+      );
+      user = data.user;
+    }
+
     let newPassword = user.password;
-    if (isRecover) {
+    if (userPassword.isRecover) {
       newPassword = user.username + Math.floor(Math.random() * (10 + 1));
     }
     const password = await bcrypt.hash(newPassword, saltRounds);
     this.usersRepository.update(user.id, { password: password });
-    if (isRecover) {
+    if (userPassword.isRecover) {
       return this.sendEmail(user.email, newPassword);
     }
   }
