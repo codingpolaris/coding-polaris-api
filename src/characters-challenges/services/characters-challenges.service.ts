@@ -81,7 +81,7 @@ export class CharactersChallengesService {
       );
     createCharactersChallengeDto.challenge =
       await this.challengesService.findOne(
-        +requestUpdateCharacterChallenge.ChallengeId,
+        +requestUpdateCharacterChallenge.challengeId,
       );
     createCharactersChallengeDto.achievement =
       await this.achievementsService.findOne(

@@ -1,7 +1,7 @@
 export class RequestUpdateCharacterChallenge {
   characterId: number;
 
-  ChallengeId: number;
+  challengeId: number;
 
   class: string;
 
