@@ -4,4 +4,6 @@ export class RequestCharactersThemes {
   themeId: number;
 
   isCompleted: boolean;
+
+  pathId?: number;
 }

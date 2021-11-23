@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CharactersPathsService } from 'src/characters-paths/services/characters-paths.service';
 import { CharactersService } from 'src/characters/characters.service';
 import { ThemePathsService } from 'src/theme-paths/services/theme-paths.service';
 import { ThemesService } from 'src/themes/themes.service';
@@ -18,6 +19,7 @@ export class CharactersThemesService {
     private charactersService: CharactersService,
     private themePathsService: ThemePathsService,
     private themesService: ThemesService,
+    private charactersPathsService: CharactersPathsService,
   ) {}
   async create(requestCharactersThemes: RequestCharactersThemes) {
     const createCharactersThemeDto = new CreateCharactersThemeDto();
@@ -52,6 +54,7 @@ export class CharactersThemesService {
     });
     return userThemes;
   }
+
   async update(id: number, requestCharactersThemes: RequestCharactersThemes) {
     const updateCharactersThemeDto = new UpdateCharactersThemeDto();
     const createCharactersThemeDto = new CreateCharactersThemeDto();
@@ -64,13 +67,37 @@ export class CharactersThemesService {
     );
     updateCharactersThemeDto.isCompleted = requestCharactersThemes.isCompleted;
 
-    if (requestCharactersThemes.isCompleted) {
-    }
-
-    return this.charactersThemeRepository.update(
+    const log = await this.charactersThemeRepository.update(
       createCharactersThemeDto,
       updateCharactersThemeDto,
     );
+
+    if (requestCharactersThemes.isCompleted) {
+      return await this.isCompleted(
+        requestCharactersThemes.characterId,
+        requestCharactersThemes.themeId,
+        requestCharactersThemes.pathId,
+      );
+    } else {
+      return log;
+    }
+  }
+
+  async isCompleted(characterId: number, themeId: number, pathId: number) {
+    const themes = await this.getThemeByPath(
+      characterId.toString(),
+      pathId.toString(),
+    );
+    const last = themes.pop();
+    if (last.themeId === themeId) {
+      return await this.charactersPathsService.completeUpdate(
+        pathId.toString(),
+        characterId.toString(),
+        true,
+      );
+    } else {
+      return;
+    }
   }
 
   async remove(id: number): Promise<void> {

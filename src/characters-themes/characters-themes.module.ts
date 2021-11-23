@@ -6,6 +6,7 @@ import { CharactersTheme } from './entities/characters-theme.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThemesModule } from 'src/themes/themes.module';
 import { ThemePathsModule } from 'src/theme-paths/theme-paths.module';
+import { CharactersPathsModule } from 'src/characters-paths/characters-paths.module';
 
 @Module({
   controllers: [CharactersThemesController],
@@ -15,6 +16,7 @@ import { ThemePathsModule } from 'src/theme-paths/theme-paths.module';
     ThemesModule,
     CharactersModule,
     ThemePathsModule,
+    CharactersPathsModule,
   ],
   exports: [TypeOrmModule, CharactersThemesService],
 })

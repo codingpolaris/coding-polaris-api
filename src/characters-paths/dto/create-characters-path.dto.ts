@@ -7,4 +7,6 @@ export class CreateCharactersPathDto {
   character: Character;
 
   path: Path;
+
+  isCompleted: boolean;
 }
