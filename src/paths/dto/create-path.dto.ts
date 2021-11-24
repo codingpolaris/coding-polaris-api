@@ -5,5 +5,5 @@ export class CreatePathDto {
 
   level: number;
 
-  acess: number;
+  access: number;
 }

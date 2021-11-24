@@ -14,7 +14,7 @@ export class Theme {
   level: number;
 
   @Column()
-  acess: number;
+  access: number;
   @ManyToMany(() => Path, (path) => path.theme)
   path: Path[];
 

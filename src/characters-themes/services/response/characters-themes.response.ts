@@ -8,7 +8,7 @@ export class ResponseCharactersThemes extends Theme {
     this.themeId = characterTheme.theme.id;
     this.name = characterTheme.theme.name;
     this.level = characterTheme.theme.level;
-    this.acess = characterTheme.theme.acess;
+    this.access = characterTheme.theme.access;
     this.isCompleted = characterTheme.isCompleted;
   }
   themeId: number;

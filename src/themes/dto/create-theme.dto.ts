@@ -5,5 +5,5 @@ export class CreateThemeDto {
 
   level: number;
 
-  acess: number;
+  access: number;
 }
