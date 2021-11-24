@@ -23,6 +23,9 @@ export class Challenge {
   @Column({ default: 0 })
   minLevel: number;
 
+  @Column()
+  type: string;
+
   @ManyToOne(() => Content)
   @JoinColumn()
   content: Content;

@@ -9,5 +9,7 @@ export class CreateChallengeDto {
 
   minLevel: number;
 
+  type: string;
+
   content: Content;
 }
