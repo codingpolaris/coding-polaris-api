@@ -28,12 +28,9 @@ export class ChallengesController {
     return this.challengesService.create(createChallengeDto);
   }
 
-  @Get(':themeId/:characterId')
-  async find(
-    @Param('themeId') themeId: string,
-    @Param('characterId') characterId: string,
-  ) {
-    return await this.challengesService.findIncomplete(themeId, characterId);
+  @Get(':themeId')
+  async find(@Param('themeId') themeId: string) {
+    return await this.challengesService.find(themeId);
   }
 
   @Patch(':id')
